@@ -2,7 +2,7 @@ package service
 
 import (
 	"github.com/example-go/service/category"
-	"github.com/hieunmce/example-go/service/user"
+	"github.com/example-go/service/user"
 )
 
 // Service define list of all services in projects

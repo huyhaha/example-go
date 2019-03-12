@@ -1,22 +1,22 @@
-package user
+package category
 
 import (
 	"context"
 	"encoding/json"
 	"net/http"
 
+	"github.com/example-go/domain"
+	categoryEndpoint "github.com/example-go/endpoints/category"
 	"github.com/go-chi/chi"
-
-	"github.com/hieunmce/example-go/domain"
 )
 
 // FindRequest .
 func FindRequest(_ context.Context, r *http.Request) (interface{}, error) {
-	userID, err := domain.UUIDFromString(chi.URLParam(r, "user_id"))
+	categoryID, err := domain.UUIDFromString(chi.URLParam(r, "category_id"))
 	if err != nil {
 		return nil, err
 	}
-	return categoryEndpoint.FindRequest{UserID: userID}, nil
+	return categoryEndpoint.FindRequest{CategoryID: categoryID}, nil
 }
 
 // FindAllRequest .
@@ -33,7 +33,7 @@ func CreateRequest(_ context.Context, r *http.Request) (interface{}, error) {
 
 // UpdateRequest .
 func UpdateRequest(_ context.Context, r *http.Request) (interface{}, error) {
-	userID, err := domain.UUIDFromString(chi.URLParam(r, "user_id"))
+	categoryID, err := domain.UUIDFromString(chi.URLParam(r, "category_id"))
 	if err != nil {
 		return nil, err
 	}
@@ -44,16 +44,16 @@ func UpdateRequest(_ context.Context, r *http.Request) (interface{}, error) {
 		return nil, err
 	}
 
-	req.User.ID = userID
+	req.Category.ID = categoryID
 
 	return req, nil
 }
 
 // DeleteRequest .
 func DeleteRequest(_ context.Context, r *http.Request) (interface{}, error) {
-	userID, err := domain.UUIDFromString(chi.URLParam(r, "user_id"))
+	categoryID, err := domain.UUIDFromString(chi.URLParam(r, "category_id"))
 	if err != nil {
 		return nil, err
 	}
-	return categoryEndpoint.DeleteRequest{UserID: userID}, nil
+	return categoryEndpoint.DeleteRequest{CategoryID: categoryID}, nil
 }
